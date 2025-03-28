@@ -51,7 +51,7 @@ class AuthController extends Controller
                 'senha'    => Hash::make($request->input('senha')),
             ]);
 
-            return redirect()->route('');
+            return view('dashboard.dash');
         }
 
         return view('pages.signup');
