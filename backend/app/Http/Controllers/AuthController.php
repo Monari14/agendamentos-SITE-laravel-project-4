@@ -78,6 +78,6 @@ class AuthController extends Controller
     {
         Session::flush();
 
-        return redirect()->route('');
+        return redirect()->route('logout');
     }
 }
