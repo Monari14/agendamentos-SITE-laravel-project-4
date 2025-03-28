@@ -66,12 +66,11 @@ class AuthController extends Controller
 
         // Obter o usuário usando DB
         $user = DB::table('users')->where('id', session('user_id'))->first();
-
+        $username = DB::table('users')->where('id', session('user_id'))->value('username');
         if (!$user) {
             return redirect()->route('signin');
         }
-
-        return view('dashboard.dash', compact('user'));
+        return view('dashboard.dash', ['user' => $user, 'username' => $username]);
     }
 
     public function logout()
