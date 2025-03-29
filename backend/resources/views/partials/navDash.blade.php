@@ -22,7 +22,7 @@
             <a class="nav-link" aria-current="page" href="/dashboard/novo-agendamento">Novo agendamento</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/dashboard/#meus-agendamentos">Meus agendamentos</a>
+            <a class="nav-link" aria-current="page" href="/dashboard/meus-agendamentos">Meus agendamentos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/logout">Logout</a>

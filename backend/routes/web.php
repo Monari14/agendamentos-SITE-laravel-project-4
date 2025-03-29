@@ -42,5 +42,7 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 Route::get('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('novo_agendamento');
 Route::post('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('dashboard/novo-agendamento');
 Route::get('/dashboard/novo-agendamento/{data}', [AgendamentoController::class, 'getAgendamentos']);
-
 Route::get('/dashboard/novo-agendamento/{data}/{hora}', [AgendamentoController::class, 'getQuadrasIndisponiveis']);
+
+Route::get('/dashboard/meus-agendamentos', [AgendamentoController::class, 'meus_agendamentos'])->name('meus_agendamentos');
+

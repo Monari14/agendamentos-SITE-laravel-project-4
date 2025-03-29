@@ -55,12 +55,4 @@ class DashboardController extends Controller
         // Se não foi possível fazer o agendamento, retorna para a mesma página
         return view('dashboard.novo_agendamento');
     }
-
-    public function lista_agendamento() {
-        $agendamentos = DB::table('agendamentos')->where('user_id', session('user_id'))->get(); // Alterado para 'get()'
-        if ($agendamentos->isEmpty()) {
-            return view('dashboard.dash')->with('error', 'Você não possui agendamentos.');
-        }
-        return view('dashboard.dash', ['agendamentos' => $agendamentos]); // Passa todos os agendamentos
-    }
 }
