@@ -2,8 +2,9 @@
 
 @include('partials.navDash')
 @section('content')
-    <div class="container">
-        <h2>Bem vindo à Dashboard, @ {{$username}}!</h2>
+    <center>
+        <h2>Novo agendamento</h2>
+
         <br><br>
-    </div>
+    </center>
 @endsection

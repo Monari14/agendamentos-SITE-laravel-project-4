@@ -19,3 +19,7 @@ Route::get('/logout', function () {
     session()->flush();
     return redirect()->route('dashboard');
 });
+
+Route::get('/dashboard/novo-agendamento', function () {
+    return view('pages.novo_agendamento');
+});
