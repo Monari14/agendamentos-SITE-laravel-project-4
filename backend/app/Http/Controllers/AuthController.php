@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
+use App\Models\User;
 class AuthController extends Controller
 {
     public function signin(Request $request)
@@ -51,7 +51,17 @@ class AuthController extends Controller
                 'senha'    => Hash::make($request->input('senha')),
             ]);
 
-            return view('dashboard.dash');
+
+            $username = $request->input('username');
+            $user = User::where('username', $username)->first(); // Busca o usuário
+
+            if (!$user) {
+                return redirect()->back()->with('error', 'Usuário não encontrado');
+            }
+
+            Session::put('user_id', $user->id);
+
+            return view('dashboard.dash', ['user' => $user, 'username' => $user->username]);
         }
 
         return view('pages.signup');
