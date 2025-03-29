@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -20,6 +21,6 @@ Route::get('/logout', function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/dashboard/novo-agendamento', function () {
-    return view('pages.novo_agendamento');
-});
+Route::get('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('novo_agendamento');
+
+Route::post('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('dashboard/novo-agendamento');
