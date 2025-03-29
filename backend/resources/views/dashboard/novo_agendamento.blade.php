@@ -89,7 +89,7 @@
 
             <!-- Etapa 5: Confirmação -->
             <div class="step" id="step5" style="display: none;">
-                <h3>Confirme os dados do agendamento:</h3>
+                <h4>Confirmação:</h4>
                 <p><strong>Telefone:</strong> <span id="confirmTelefone"></span></p>
                 <p><strong>Data:</strong> <span id="confirmData"></span></p>
                 <p><strong>Horário:</strong> <span id="confirmHora"></span></p>
