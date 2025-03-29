@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@include('partials.navPublic')
 @section('content')
+@include('partials.navPublic')
+
 <title>Agendamentos</title>
 <h1>Index</h1>
 @endsection
