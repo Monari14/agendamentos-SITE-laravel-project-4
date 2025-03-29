@@ -4,23 +4,40 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
+// Route default
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('signin', [AuthController::class, 'signin'])->name('signin');
-Route::post('signin', [AuthController::class, 'signin']);
+// Routes of login
+Route::get(
+    'signin',
+    [AuthController::class, 'signin'])->name('signin'
+);
+Route::post(
+    'signin',
+    [AuthController::class, 'signin']
+);
 
-Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
-Route::post('/signup', [AuthController::class, 'signup']);
+// Routes of signup
+Route::get(
+    '/signup',
+    [AuthController::class, 'signup'])->name('signup'
+);
+Route::post(
+    '/signup',
+    [AuthController::class, 'signup']
+);
 
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-
+// Route of logout
 Route::get('/logout', function () {
     session()->flush();
     return redirect()->route('dashboard');
 });
 
-Route::get('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('novo_agendamento');
+// Route of dashboard
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
+// Routes of new schedules
+Route::get('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('novo_agendamento');
 Route::post('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('dashboard/novo-agendamento');

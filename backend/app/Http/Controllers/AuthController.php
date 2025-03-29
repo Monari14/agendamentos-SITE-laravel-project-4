@@ -67,22 +67,6 @@ class AuthController extends Controller
         return view('pages.signup');
     }
 
-    public function dashboard()
-    {
-        // Verificar se o usuário está autenticado
-        if (!session('user_id')) {
-            return redirect()->route('signin');
-        }
-
-        // Obter o usuário usando DB
-        $user = DB::table('users')->where('id', session('user_id'))->first();
-        $username = DB::table('users')->where('id', session('user_id'))->value('username');
-        if (!$user) {
-            return redirect()->route('signin');
-        }
-        return view('dashboard.dash', ['user' => $user, 'username' => $username]);
-    }
-
     public function logout()
     {
         Session::flush();
