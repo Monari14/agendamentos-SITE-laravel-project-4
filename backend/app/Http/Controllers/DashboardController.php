@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class DashboardController extends Controller
 {
     public function dashboard()
@@ -43,8 +44,12 @@ class DashboardController extends Controller
 
     public function novo_agendamento(Request $request)
     {
+        // Verifica se o usuário está logado
+        if (!session('user_id')) {
+            return redirect()->route('signin');
+        }
+
         if ($request->isMethod('post')) {
-            // Validate the request data
             // Valida os dados da requisição
             $request->validate([
                 'telefone' => 'required',
@@ -52,23 +57,26 @@ class DashboardController extends Controller
                 'hora'     => 'required|date_format:H:i',
                 'quadra'   => 'required',
             ]);
-            // Insert the new schedule into the database
-            // Insere o novo agendamento no banco de dados
-            DB::table('agendamentos')->insert([
-                'user_id' => session('user_id'),
-                'telefone' => $request->input('telefone'),
-                'data'    => $request->input('data'),
-                'hora'    => $request->input('hora'),
-                'quadra'    => $request->input('quadra'),
-            ]);
-            // Redirect to the dashboard after successful insertion
-            // Redireciona para o dashboard após a inserção bem-sucedida
-            $user = DB::table('users')->where('id', session('user_id'))->first();
-            $username = DB::table('users')->where('id', session('user_id'))->value('username');
-            return view('dashboard.dash', ['user' => $user, 'username' => $username]);
+
+            try {
+                // Insere o novo agendamento no banco de dados
+                DB::table('agendamentos')->insert([
+                    'user_id'  => session('user_id'),
+                    'telefone' => $request->input('telefone'),
+                    'data'     => $request->input('data'),
+                    'hora'     => $request->input('hora'),
+                    'quadra'   => $request->input('quadra'),
+                ]);
+
+                // Redireciona para o dashboard com mensagem de sucesso
+                return redirect()->route('dashboard')->with('sucesso', 'Agendamento realizado com sucesso!');
+            } catch (\Exception $e) {
+                // Redireciona de volta com mensagem de erro
+                return redirect()->back()->with('error', 'Erro ao realizar o agendamento. Tente novamente.');
+            }
         }
-        // If it was not possible to make the appointment, return to the same page
-        // Se não foi possível fazer o agendamento, retorna para a mesma página
+
+        // Retorna a view de novo agendamento
         return view('dashboard.novo_agendamento');
     }
 }

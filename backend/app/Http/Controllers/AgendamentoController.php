@@ -17,15 +17,19 @@ class AgendamentoController extends Controller
 
         return response()->json($agendamentos);
     }
-
     public function getQuadrasIndisponiveis($data, $hora)
     {
-        // Filtra os agendamentos pela data e hora
-        $quadrasIndisponiveis = Agendamento::
-            whereDate('data', $data)
+        // Log os valores recebidos
+        \Log::info("Data recebida: $data, Hora recebida: $hora");
+
+        // Consulta ao banco de dados
+        $quadrasIndisponiveis = Agendamento::where('data', $data) // Usa o formato 'DD-MM-YYYY' diretamente
             ->where('hora', $hora)
             ->pluck('quadra')
             ->toArray();
+
+        // Log o resultado da consulta
+        \Log::info("Quadras indisponíveis: " . json_encode($quadrasIndisponiveis));
 
         return response()->json($quadrasIndisponiveis);
     }

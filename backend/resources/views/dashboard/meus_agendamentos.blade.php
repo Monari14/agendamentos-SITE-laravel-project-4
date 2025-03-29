@@ -10,6 +10,9 @@
     @else
         <table class="table table-striped">
             <h1>Meus agendamentos</h1>
+
+            <a href="/dashboard/novo-agendamento/">Novo agendamento</a>
+
             <thead>
                 <tr>
                     <th>Data</th>
@@ -20,7 +23,7 @@
             <tbody>
                 @foreach ($agendamentos as $agendamento)
                     <tr>
-                        <td>{{ \Carbon\Carbon::parse($agendamento->data)->format('d/m/Y') }}</td>
+                        <td>{{ $agendamento->data }}</td>
                         <td>{{ $agendamento->hora }}</td>
                         <td>{{ $agendamento->quadra }}</td>
                     </tr>
