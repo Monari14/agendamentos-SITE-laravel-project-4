@@ -18,11 +18,27 @@ class DashboardController extends Controller
         // Busca o usuário no banco de dados
         $user = DB::table('users')->where('id', session('user_id'))->first();
         // Get the username || Pega o nome de usuário
-        $username = DB::table('users')->where('id', session('user_id'))->value('username');
+        $username = $user->username ?? 'Usuário';
+
+        // Check if the user exists
+        // Verifica se o usuário existe
         if (!$user) {
             return redirect()->route('signin');
         }
-        return view('dashboard.dash', ['user' => $user, 'username' => $username]);
+
+        // Fetch the user's appointments
+        // Busca os agendamentos do usuário
+        $agendamentos = DB::table('agendamentos')
+            ->where('user_id', session('user_id'))
+            ->get();
+
+        // Return the view with the user, username, and appointments
+        // Retorna a view com o usuário, nome de usuário e agendamentos
+        return view('dashboard.dash', [
+            'user' => $user,
+            'username' => $username,
+            'agendamentos' => $agendamentos,
+        ]);
     }
 
     public function novo_agendamento(Request $request)

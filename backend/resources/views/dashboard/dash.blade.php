@@ -4,19 +4,19 @@
 @include('partials.navDash')
 
     <div class="container">
-        <h2>Bem vindo à Dashboard, @ {{$username}}!</h2>
-        <br><br>
-
-        @if (isset($agendamentos) && $agendamentos->isNotEmpty())
-            <ul>
-                @foreach ($agendamentos as $agendamento)
-                    <li>
-                        Data: {{ $agendamento->data }} - Hora: {{ $agendamento->hora }} - Quadra: {{ $agendamento->quadra }}
-                    </li>
-                @endforeach
-            </ul>
+    <h2>Bem vindo(a) à Dashboard, @ {{ $username }}!</h2>
+    <br><br>
+        @if ($agendamentos->isNotEmpty())
+            <p>
+                Você tem {{ $agendamentos->count() }}
+                {{ Str::plural('agendamento', $agendamentos->count()) }}.
+                <a href="/dashboard/meus-agendamentos">Ver agora</a>.
+            </p>
         @else
-            <p>{{ $error ?? 'Nenhum agendamento encontrado.' }}</p>
+            <p>
+                Nenhum agendamento encontrado.
+                <a href="/dashboard/novo-agendamento">Faça um agendamento agora</a>.
+            </p>
         @endif
     </div>
 @endsection
