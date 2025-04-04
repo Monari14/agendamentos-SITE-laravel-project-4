@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('agendamentos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('telefone', 19);
             $table->string('data', 255);
             $table->string('hora', 255);
             $table->string('quadra', 255);

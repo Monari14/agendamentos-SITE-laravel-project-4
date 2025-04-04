@@ -42,14 +42,17 @@ class AuthController extends Controller
             $request->validate([
                 'username' => 'required|unique:users,username',
                 'email'    => 'required|email|unique:users,email',
+                'telefone' => 'required',
                 'senha'    => 'required|min:6',
             ]);
 
             DB::table('users')->insert([
                 'username' => $request->input('username'),
                 'email'    => $request->input('email'),
+                'telefone' => $request->input('telefone'),
                 'senha'    => Hash::make($request->input('senha')),
             ]);
+
 
 
             $username = $request->input('username');
@@ -61,7 +64,14 @@ class AuthController extends Controller
 
             Session::put('user_id', $user->id);
 
-            return view('dashboard.dash', ['user' => $user, 'username' => $user->username]);
+            $agendamentos = DB::table('agendamentos')
+            ->where('user_id', session('user_id'))
+            ->get();
+
+            return view('dashboard.dash', [
+                'user' => $user,
+                'username' => $user->username,
+                'agendamentos' => $agendamentos,]);
         }
 
         return view('pages.signup');

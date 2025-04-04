@@ -24,15 +24,9 @@
             @csrf
             <h2>Novo Agendamento</h2>
 
-            <!-- Etapa 1: Telefone -->
-            <div class="step" id="step1">
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
-                <button type="button" class="nextButton">Prosseguir</button>
-            </div>
 
             <!-- Etapa 2: Data -->
-            <div class="step" id="step2" style="display: none;">
+            <div class="step" id="step1" style="display: none;">
                 <label for="data">Data:</label>
                 <div style="display: flex; align-items: center;">
                     <input type="text" name="data" id="data" placeholder="Selecione a data" required style="opacity: 0; position: absolute;">
@@ -46,7 +40,7 @@
             </div>
 
             <!-- Etapa 3: Horário -->
-            <div class="step" id="step3" style="display: none;">
+            <div class="step" id="step2" style="display: none;">
                 <label for="hora">Horário:</label>
                 <select name="hora" id="hora" required>
                     <option value="" disabled selected>Selecione a hora</option>
@@ -74,7 +68,7 @@
             </div>
 
             <!-- Etapa 4: Quadra -->
-            <div class="step" id="step4" style="display: none;">
+            <div class="step" id="step3" style="display: none;">
                 <label for="quadra">Quadra:</label>
                 <select name="quadra" id="quadra" required>
                     <option value="" disabled selected>Selecione a quadra</option>
@@ -88,7 +82,7 @@
             </div>
 
             <!-- Etapa 5: Confirmação -->
-            <div class="step" id="step5" style="display: none;">
+            <div class="step" id="step4" style="display: none;">
                 <h4>Confirmação:</h4>
                 <p><strong>Telefone:</strong> <span id="confirmTelefone"></span></p>
                 <p><strong>Data:</strong> <span id="confirmData"></span></p>

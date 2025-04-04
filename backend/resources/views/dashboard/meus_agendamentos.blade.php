@@ -2,7 +2,7 @@
 
 @section('content')
 @include('partials.navDash')
-<div class="container">
+<div class="containerDash">
     @if (isset($error))
         <div class="alert alert-warning">
             {{ $error }}
@@ -11,7 +11,7 @@
         <table class="table table-striped">
             <h1>Meus agendamentos</h1>
 
-            <a href="/dashboard/novo-agendamento/">Novo agendamento</a>
+            <a href="/dashboard/novo-agendamento/">Faça um novo agendamento</a>
 
             <thead>
                 <tr>

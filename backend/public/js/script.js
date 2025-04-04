@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', () => {
             if (index === steps.length - 2) {
                 // Preencher os dados de confirmação
-                document.getElementById('confirmTelefone').textContent = document.getElementById('telefone').value;
                 document.getElementById('confirmData').textContent = document.getElementById('selectedDate').textContent;
                 document.getElementById('confirmHora').textContent = document.getElementById('hora').value;
                 document.getElementById('confirmQuadra').textContent = document.getElementById('quadra').value;

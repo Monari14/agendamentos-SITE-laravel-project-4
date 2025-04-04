@@ -39,8 +39,8 @@ Route::get('/logout', function () {
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 // Routes of new schedules
-Route::get('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('novo_agendamento');
-Route::post('/dashboard/novo-agendamento', [DashboardController::class, 'novo_agendamento'])->name('dashboard/novo-agendamento');
+Route::get('/dashboard/novo-agendamento', [AgendamentoController::class, 'novo_agendamento'])->name('novo_agendamento');
+Route::post('/dashboard/novo-agendamento', [AgendamentoController::class, 'novo_agendamento'])->name('dashboard/novo-agendamento');
 Route::get('/dashboard/novo-agendamento/{data}', [AgendamentoController::class, 'getAgendamentos']);
 Route::get('/dashboard/novo-agendamento/{data}/{hora}', [AgendamentoController::class, 'getQuadrasIndisponiveis']);
 
