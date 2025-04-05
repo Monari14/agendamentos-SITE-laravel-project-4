@@ -8,9 +8,10 @@
             @csrf
             <h1>Sign In</h1>
             <input type="text" name="emailUser" id="emailUser" placeholder="Nome de usuário ou E-mail" required>
+            <br><br>
             <input type="password" name="senha" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
-            <button type="reset">Reset</button>
+            <br><br>
+            <button type="submit">Entrar</button><button type="reset">Reset</button>
         </form>
     </div>
 @endsection
