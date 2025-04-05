@@ -4,9 +4,8 @@
 @include('partials.navDash')
 <div class="containerDash">
     @if (isset($error))
-        <div class="alert alert-warning">
-            {{ $error }}
-        </div>
+        {{ $error }}
+        <a href="/dashboard/novo-agendamento">Faça um agendamento agora</a>
     @else
         <table class="table table-striped">
             <h1>Meus agendamentos</h1>
@@ -26,6 +25,13 @@
                         <td>{{ $agendamento->data }}</td>
                         <td>{{ $agendamento->hora }}</td>
                         <td>{{ $agendamento->quadra }}</td>
+                        <td>
+                        <form action="{{ route('delete_agendamentos', ['id' => $agendamento->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Excluir</button>
+                        </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

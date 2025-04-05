@@ -9,5 +9,5 @@ class Agendamento extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'user_id', 'telefone', 'data', 'hora', 'quadra'];
+    protected $fillable = ['name', 'user_id', 'data', 'hora', 'quadra'];
 }

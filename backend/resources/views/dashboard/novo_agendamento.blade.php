@@ -35,8 +35,7 @@
                     </button>
                     <span id="selectedDate" style="margin-left: 10px; font-weight: bold;">Selecione uma data</span>
                 </div>
-                <button type="button" class="prevButton">Voltar</button>
-                <button type="button" class="nextButton">Prosseguir</button>
+                    <button type="button" class="nextButton">Prosseguir</button>
             </div>
 
             <!-- Etapa 3: Horário -->

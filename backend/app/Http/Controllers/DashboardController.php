@@ -32,12 +32,12 @@ class DashboardController extends Controller
             ->where('user_id', session('user_id'))
             ->get();
 
-
+        $usernome = "@$username";
         // Return the view with the user, username, and appointments
         // Retorna a view com o usuário, nome de usuário e agendamentos
         return view('dashboard.dash', [
             'user' => $user,
-            'username' => $username,
+            'username' => $usernome,
             'agendamentos' => $agendamentos,
         ]);
     }

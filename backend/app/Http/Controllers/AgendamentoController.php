@@ -93,4 +93,28 @@ class AgendamentoController extends Controller
             'agendamentos' => $agendamentos
         ]);
     }
+
+    public function delete_agendamentos($id)
+    {
+        // Verifica se o usuário está logado
+        if (!session('user_id')) {
+            return redirect()->route('signin');
+        }
+        $agendamento = Agendamento::findOrFail($id);
+
+        if ($agendamento->user_id !== session('user_id')) {
+            abort(403);
+        }
+
+        $agendamento->delete();
+
+        $agendamentos = DB::table('agendamentos')
+            ->where('user_id', session('user_id'))
+            ->get();
+
+        return view('dashboard.meus_agendamentos', [
+            'agendamentos' => $agendamentos
+        ]);
+    }
+
 }
